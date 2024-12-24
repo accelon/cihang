@@ -1,4 +1,4 @@
-import {nodefs, writeChanged,  autoChineseBreak, readTextContent,  Paged, readTextLines} from 'ptk/nodebundle.cjs'
+import {nodefs, writeChanged,  autoChineseBreak, readTextContent,  Paged, readTextLines} from './nodebundle.cjs'
 await nodefs;
 const files=readTextLines('off/cihang.pgds');
 
