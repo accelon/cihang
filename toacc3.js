@@ -1,5 +1,6 @@
 import {nodefs, writeChanged,  autoChineseBreak, readTextContent,  Paged, readTextLines} from './nodebundle.cjs'
 await nodefs;
+//accelon24 指定的源文件
 const files=readTextLines('off/cihang.pgds');
 
 const convertmarkup=content=>{
@@ -22,12 +23,15 @@ const convertfile=(content,fn)=>{
         }
         const lines=t.split('\n');
         for(let j=0;j<lines.length;j++) {
+            //切分成較短的行。 accelon3 
+            //未來應切分 pgd 。
             out.push(autoChineseBreak(lines[j]));
         }
     }
+    // 缺乏 篇名，補上章標記
     if (chapter==0)     out.unshift('<章>無分章</章>')
     out.unshift('<書>'+pgd.header.title+'</書>')
-//indexer need utf8 marker
+//accelon3 indexer 需 utf8 marker ，否則會視為 big5
     writeChanged("acc3/"+fn.replace('.pgd',".xml"),'\ufeff'+out.join("\n"),true);
 }
 files.forEach(fn=>{
